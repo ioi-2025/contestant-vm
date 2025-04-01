@@ -2,10 +2,4 @@ export POP_SERVER="pop.toki.id"
 export BACKUP_SERVER="backup.toki.id"
 export CMS_PUBLIC_DOMAIN="cms.toki.id"
 export DNS_DOMAIN="toki.id"
-export VPN1_SERVER="vpn.cmsioi2023.hu"
-export VPN2_SERVER="vpn2.cmsioi2023.hu"
-export VPN3_SERVER="vpn3.cmsioi2023.hu"
-# Servers available without VPN (IOI2023: zabbix monitoring)
 export VENUE_SUBNET="10.101.12.0/24"
-# Hosts available through VPN (IOI2023: backup server and )
-export VPN_SUBNET="172.16.0.0/16"

@@ -10,22 +10,13 @@
 -A OUTPUT -o lo -j ACCEPT
 -A OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 -A OUTPUT -p icmp -j ACCEPT
-# The 3 VPN servers were used in two different settings
 # In the online testing phase, they were available from the same host (NAT+port forward)
 # In the live contest, they were seen as 3 separate servers.
--A OUTPUT -p tcp -m tcp -m multiport -d {VPN1_SERVER} --dports 655 -j ACCEPT
--A OUTPUT -p tcp -m tcp -m multiport -d {VPN2_SERVER} --dports 656 -j ACCEPT
--A OUTPUT -p tcp -m tcp -m multiport -d {VPN3_SERVER} --dports 657 -j ACCEPT
--A OUTPUT -p udp -m udp -m multiport -d {VPN1_SERVER} --dports 655 -j ACCEPT
--A OUTPUT -p udp -m udp -m multiport -d {VPN2_SERVER} --dports 656 -j ACCEPT
--A OUTPUT -p udp -m udp -m multiport -d {VPN3_SERVER} --dports 657 -j ACCEPT
 -A OUTPUT -p tcp -m tcp --dport 53 -j ACCEPT
 -A OUTPUT -p udp -m udp --dport 53 -j ACCEPT
 -A OUTPUT -p udp -m udp --dport 123 -j ACCEPT
 -A OUTPUT -p tcp -m tcp -m multiport -d {VENUE_SUBNET} --dports 80,443,10051 -j ACCEPT
--A OUTPUT -p tcp -m tcp -m multiport -d {VPN_SUBNET} --dports 80,443 -j ACCEPT
 -A OUTPUT -p tcp -m tcp -m multiport -d {BACKUP_SERVER} --dports 22,80,443 -j ACCEPT
--A OUTPUT -p tcp -m tcp -m multiport -d {POP_SERVER} --dports 80,443 -j ACCEPT
 # Fall-back domain
 -A OUTPUT -p tcp -m tcp -m multiport -d {CMS_PUBLIC_DOMAIN} --dports 80,443 -j ACCEPT
 # For administrative blocking, rejecting is a good idea

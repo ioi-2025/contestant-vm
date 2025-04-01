@@ -8,7 +8,7 @@ apt -y install geany geany-plugin-automark geany-plugin-lineoperations geany-plu
 apt -y install emacs \
 	gedit joe kate kdevelop nano vim vim-gtk3 \
 	ddd valgrind ruby python3-pip konsole \
-	cmake python3-matplotlib firefox
+	cmake python3-matplotlib
 
 $wget -O $cache/code_stable_amd64.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
 ls -lha $cache/

@@ -99,23 +99,6 @@
   <p>You can also re-run IOI Setup by running <code>ioisetup</code> from the
     terminal.</p>
 
-  <p>The IOI Setup will download
-    and install a VPN configuration. The UNIX "gecos real name" is also updated
-    with your contestant username, e.g. XXX1, which will be displayed in the top right
-    corner on subsequent logins.</p>
-
-  <p>The VPN connection identifies this computer to the IOI 2025 grading system
-    as being associated to the configured contestant. If
-    another contestant takes over the use of this computer, they must re-run IOI
-    Setup with their credentials.</p>
-
-  <p><strong>IMPORTANT</strong>: There must be only <strong>one</strong> machine running and
-    connected to the IOI 2025 grading system per contestant credentials. If the
-    same contestant is logged in more than once, the VPN connection will flap
-    between the two instances and will <strong>NOT</strong> be usable. <strong>During the contest days, the IOI Setup
-      will be completely handled by the organizers, so the contestants will not need to perform any authentication on
-      the machine.</strong></p>
-
   <h2>Applications</h2>
 
   <p>The sidebar on the left is called the <strong>Launcher</strong>.</p>
@@ -179,23 +162,6 @@
   </p>
 
   <p>E.g.: <code>ioiconf settz UTC</code> to use GMT time.</p>
-
-  <h3>VPN Protocol Mode</h3>
-
-  <p>By default, the VPN is configured to use <strong>TCP on port 655 only</strong>. The VPN
-    software, <strong>tinc</strong>, can also use UDP on port 655 for data packets, in addition to
-    using TCP on port 655 for metadata. This may improve performance, provided your
-    network permits UDP port 655 traffic outbound and inbound. This mode can be
-    enabled by running <code>ioiconf setvpnproto auto</code>, then <code>ioiconf
-vpnrestart</code> (or restart the contestant machine).</p>
-
-  <p>In auto mode, both TCP/UDP will be used, with automatic fallback to
-    TCP-only. To revert to the default TCP-only setting, run <code>ioiconf
-setvpnproto tcp</code>, then <code>ioiconf vpnrestart</code> (or restart the
-    contestant machine).</p>
-
-  <p>Note that the VPN protocol mode will return to default if the VPN is re-setup
-    (i.e. by re-running <code>ioisetup</code>).</p>
 
   <h3>Import VSCode extensions from local machine</h3>
 

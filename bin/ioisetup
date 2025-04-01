@@ -10,145 +10,46 @@ CRED=
 
 main()
 {
-	if check_user; then
-		read -d '' -r MSG<<-EOM
-			This system is already configured for: <b>$USERID</b>\n
-			Do you want to reconfigure to another IOI user?
-			EOM
-		zenity "$ZENTITLE" $ZENARG --question \
-			--text "$MSG"
-		if [ $? -eq 1 ]; then
-			read -d '' -r MSG<<-EOM
-				Keeping configuration for: <b>$USERID</b>\n
-				EOM
-			zenity "$ZENTITLE" $ZENARG --info \
-				--text "$MSG"
-			exit 1
-		fi
-
-		logger -p local0.info "IOISETUP: previously configured for $USERID"
-	fi
-
-	while true; do
-		do_setup
-		if [ $? -eq 1 ]; then
-			break
-		fi
-	done
+    while true; do
+        do_setup
+        if [ $? -eq 1 ]; then
+            break
+        fi
+    done
 }
 
 do_setup()
 {
+    CRED=$(zenity "$ZENTITLE" $ZENARG \
+        --forms --text "Enter contestant credentials" \
+        --add-entry=Username: \
+        --add-password=Password:
+    )
 
-	CRED=$(zenity "$ZENTITLE" $ZENARG \
-		--forms --text "Enter contestant credentials" \
-		--add-entry=Username: \
-		--add-password=Password:
-	)
+    if [ $? -eq 1 ]; then
+        return 1
+    fi
 
-	if [ $? -eq 1 ]; then
-		return 1
-	fi
+    do_core_setup 
 
-	do_core_setup | zenity "$ZENTITLE" $ZENARG \
-		--progress \
-		--no-cancel \
-		--auto-close \
-		--percentage=0
-
-	local retval=${PIPESTATUS[0]}
-
-	if [ ${retval} -eq 1 ]; then
-		read -d '' -r MSG<<-EOM
-			IOI user successfully configured.
-			EOM
-		logger -p local0.info "IOISETUP: configured for ${CRED%|*}"
-		zenity "$ZENTITLE" $ZENARG \
-			--info \
-			--text "$MSG"
-	fi
-
-	if [ ${retval} -eq 2 ]; then
-		read -d '' -r MSG<<-EOM
-			Failed to communicate with the IOI 2025 configuration server.\n
-			Please try again. If this persists, please contact the HTC.
-			EOM
-		zenity "$ZENTITLE" $ZENARG \
-			--error \
-			--text "$MSG"
-	fi
-
-	if [ ${retval} -eq 3 ]; then
-		read -d '' -r MSG<<-EOM
-			Your credentials are not correct. Please try again.
-			EOM
-		zenity "$ZENTITLE" $ZENARG \
-			--error \
-			--text "$MSG"
-	fi
-
-	if [ ${retval} -eq 4 ]; then
-		read -d '' -r MSG<<-EOM
-			Internal error occured. Please contact the HTC.
-			EOM
-		zenity "$ZENTITLE" $ZENARG \
-			--error \
-			--text "$MSG"
-	fi
-
-	return ${retval}
+    local retval=${PIPESTATUS[0]}
+    return ${retval}
 }
 
 do_core_setup()
 {
+    # Populate root's known_hosts
+    sudo /opt/ioi/bin/ioiconf.sh keyscan
 
-	# populate root's known_hosts
-	sudo /opt/ioi/bin/ioiconf.sh keyscan
+    # Trigger downloading new ansible pubkey
+    sudo /opt/ioi/bin/ioiconf.sh getpubkey
+    if [ $? -ne 0 ]; then
+        echo "100"
+        return 2  # connection issue
+    fi
 
-	# TODO trigger not only on VPN setup:
-	#   Trigger during startup instead?
-	# download new ansible pubkey
-	sudo /opt/ioi/bin/ioiconf.sh getpubkey
-	if [ $? -ne 0 ]; then
-		echo "100"
-		return 2  # connection issue
-	fi
-
-	echo "25"
-
-	curl -m 5 -s -f -o /tmp/vpn.tar.bz2 "https://$POP_SERVER/pop-config/$CRED" > /dev/null 2>&1
-	RC=$?
-	if [ $RC -eq 22  ]; then
-		echo "100"
-		return 3  # wrong password
-	elif [ $RC -ne 0 ]; then
-		echo "100"
-		return 2  # connection issue
-	fi
-
-	echo "50"
-
-	sudo /opt/ioi/bin/ioiconf.sh vpnconfig /tmp/vpn.tar.bz2 $CRED
-	local retval=$?
-	if [ $retval -ne 0 ]; then
-		echo "100"
-		return 4  # internal error
-	fi
-
-	echo "75"
-
-	sudo /opt/ioi/bin/ioiconf.sh vpnrestart
-
-	echo "100"
-
-	return 1
-
-}
-
-check_user()
-{
-	USERID=$(/opt/ioi/bin/ioicheckuser -q)
-	return $?
+    echo "100"
+    return 1
 }
 
 logger -p local0.info "IOISETUP: invoked"
