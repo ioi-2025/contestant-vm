@@ -1,4 +1,3 @@
-export POP_SERVER="pop.ioi2025.bo"
 export BACKUP_SERVER="backup.ioi2025.bo"
 export CMS_PUBLIC_DOMAIN="cms.ioi2025.bo"
 export DNS_DOMAIN="ioi2025.loc"

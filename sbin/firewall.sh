@@ -6,7 +6,6 @@ case "$1" in
 	start)
 		# TODO update
 		cat /opt/ioi/misc/iptables.save | \
-			sed -e 's/{POP_SERVER}/'${POP_SERVER}'/g' | \
 			sed -e 's/{BACKUP_SERVER}/'${BACKUP_SERVER}'/g' | \
 			sed -e 's/{CMS_PUBLIC_DOMAIN}/'${CMS_PUBLIC_DOMAIN}'/g' | \
 			sed -e 's#{SUBNET}#'${SUBNET}'#g' | iptables-restore

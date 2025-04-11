@@ -27,7 +27,6 @@ rm -rf /usr/share/doc/ppp
 rm -rf /usr/share/doc/printer-*
 rm -rf /usr/share/doc/qml-*
 rm -rf /usr/share/doc/systemd
-rm -rf /usr/share/doc/tinc
 rm -rf /usr/share/doc/ubuntu-*
 rm -rf /usr/share/doc/util-linux
 rm -rf /usr/share/doc/wpasupplicant

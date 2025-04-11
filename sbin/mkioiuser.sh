@@ -32,7 +32,7 @@ cp /usr/share/applications/gnome-keyboard-panel.desktop /home/ioi/Desktop
 cp /opt/ioi/misc/cms.desktop /home/ioi/Desktop
 chmod +x /home/ioi/Desktop/gnome-keyboard-panel.desktop
 chmod +x /home/ioi/Desktop/cms.desktop
-chown ioi.ioi -R /home/ioi/Desktop
+chown ioi:ioi -R /home/ioi/Desktop
 sudo -Hu ioi dbus-run-session gio set /home/ioi/Desktop/gnome-keyboard-panel.desktop metadata::trusted true
 sudo -Hu ioi dbus-run-session gio set /home/ioi/Desktop/cms.desktop metadata::trusted true
 sudo -Hu ioi dbus-run-session gsettings set org.gnome.shell.extensions.ding start-corner top-left
@@ -56,25 +56,25 @@ sudo -Hu ioi bash -c 'echo yes > ~/.config/gnome-initial-setup-done'
 sudo -Hu ioi bash -c 'mkdir -p ~ioi/.local/share/gnome-shell/extensions'
 cp -a /opt/ioi/misc/add-username-ext ~ioi/.local/share/gnome-shell/extensions/
 cp -a /opt/ioi/misc/stealmyfocus-ext ~ioi/.local/share/gnome-shell/extensions/
-chown -R ioi.ioi ~ioi/.local/share/gnome-shell/extensions/add-username-ext
-chown -R ioi.ioi ~ioi/.local/share/gnome-shell/extensions/stealmyfocus-ext
+chown -R ioi:ioi ~ioi/.local/share/gnome-shell/extensions/add-username-ext
+chown -R ioi:ioi ~ioi/.local/share/gnome-shell/extensions/stealmyfocus-ext
 
 # Copy VSCode extensions
 mkdir -p ~ioi/.vscode/extensions
 tar jxf /opt/ioi/misc/vscode-extensions.tar.bz2 -C ~ioi/.vscode/extensions
-chown -R ioi.ioi ~ioi/.vscode
+chown -R ioi:ioi ~ioi/.vscode
 
 # Add extra VSCode extension dir to bookmarks
 mkdir -p ~ioi/.config/gtk-3.0
 echo "file:///opt/ioi/misc/extra-vsc-exts" >> ~ioi/.config/gtk-3.0/bookmarks
-chown -R ioi.ioi ~ioi/.config/gtk-3.0
+chown -R ioi:ioi ~ioi/.config/gtk-3.0
 
 # IOI startup
 cp /opt/ioi/misc/ioistart.desktop /usr/share/gnome/autostart/
 
 # Setup default Mozilla Firefox configuration
 cp -a /opt/ioi/misc/mozilla ~ioi/.mozilla
-chown -R ioi.ioi ~ioi/.mozilla
+chown -R ioi:ioi ~ioi/.mozilla
 
 mkdir -p /home/ioi/.config/Code/User
 cat >/home/ioi/.config/Code/User/settings.json <<'EOM'
@@ -82,6 +82,6 @@ cat >/home/ioi/.config/Code/User/settings.json <<'EOM'
     "C_Cpp.default.cppStandard": "gnu++17"
 }
 EOM
-chown -R ioi.ioi /home/ioi/.config
+chown -R ioi:ioi /home/ioi/.config
 
 logger -p local0.info "MKIOIUSER: IOI user created"
