@@ -9,4 +9,5 @@ snap list --all | awk '/disabled/{print $1, $3}' | while read snapname revision;
 	snap remove "$snapname" --revision="$revision"
 done
 
-./01-remove-snap.sh
+# Remove the snapd packagess
+./setup.d/./01-clean-unused-packages.sh

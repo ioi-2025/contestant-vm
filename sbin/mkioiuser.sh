@@ -11,23 +11,6 @@ sudo -Hu ioi dbus-run-session gsettings set org.gnome.desktop.background picture
 sudo -Hu ioi dbus-run-session gsettings set org.gnome.desktop.background picture-uri-dark 'file:///opt/ioi/misc/ioi-wallpaper.png'
 sudo -Hu ioi dbus-run-session gsettings set org.gnome.desktop.background primary-color '#000000'
 sudo -Hu ioi dbus-run-session gsettings set org.gnome.desktop.background secondary-color '#000000'
-sudo tee -a /usr/share/gnome-shell/theme/gdm3.css > /dev/null << 'EOF'
-
-#login-dialog {
-    margin-top: 80px;
-    z-index: 10;
-}
-.logo {
-    z-index: 1;
-    margin-bottom: 20px;
-}
-.user-label {
-    color: white;
-    z-index: 15;
-    position: relative;
-}
-EOF
-
 sudo -Hu ioi dbus-run-session gsettings set org.gnome.shell enabled-extensions "['add-username-ext', 'stealmyfocus-ext']"
 sudo -Hu ioi dbus-run-session gsettings set org.gnome.shell disable-user-extensions false
 # Favorites (apps in sidebar): Removed yelp (help function),
