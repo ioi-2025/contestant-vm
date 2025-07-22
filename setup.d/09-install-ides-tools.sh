@@ -74,3 +74,18 @@ cp "$cache/vim-${VSCODE_VIM_VERSION}.vsix" /opt/ioi/misc/extra-vsc-exts/vscodevi
 cp "$cache/intellij-idea-keybindings-${VSCODE_INTELLIJ_VERSION}.vsix" /opt/ioi/misc/extra-vsc-exts/intellij-idea-keybindings.vsix
 cp "$cache/vscode-clangd-${VSCODE_CLANGD_VERSION}.vsix" /opt/ioi/misc/extra-vsc-exts/vscode-clangd.vsix
 rm -rf /tmp/vscode-extensions
+
+# Configuration for C++ standard and compiler path
+VSCODE_SETTINGS_DIR="/home/ioi/.config/Code/User"
+VSCODE_SETTINGS_FILE="$VSCODE_SETTINGS_DIR/settings.json"
+
+mkdir -p "$VSCODE_SETTINGS_DIR"
+
+cat <<EOF > "$VSCODE_SETTINGS_FILE"
+{
+  "C_Cpp.default.cppStandard": "gnu++20",
+  "C_Cpp.default.compilerPath": "/usr/bin/g++"
+}
+EOF
+
+chown -R ioi:ioi "$VSCODE_SETTINGS_DIR"
