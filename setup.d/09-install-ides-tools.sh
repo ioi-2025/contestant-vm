@@ -84,7 +84,9 @@ mkdir -p "$VSCODE_SETTINGS_DIR"
 cat <<EOF > "$VSCODE_SETTINGS_FILE"
 {
   "C_Cpp.default.cppStandard": "gnu++20",
-  "C_Cpp.default.compilerPath": "/usr/bin/g++"
+  "C_Cpp.default.compilerPath": "/usr/bin/g++",
+  "extensions.ignoreRecommendations": true,
+  "extensions.showRecommendationsOnlyOnDemand": true
 }
 EOF
 
