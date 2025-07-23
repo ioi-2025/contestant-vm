@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Grading Environment | IOI 2025 Bolivia</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link href="img/favicon-32x32.png" rel="icon">
+    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+        <link href="css/font-face.css" rel="stylesheet">
+
+
+    <!-- Vendor CSS Files -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/venobox/venobox.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Main CSS File -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        .grading-environment ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .grading-environment ul li:before {
+            content: "•";
+            color: #007bff;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        .grading-environment pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <style>
+        .note-box p {
+            margin-bottom: 0;
+        }
+
+        .note-box strong {
+            color: var(--bs-primary);
+            font-weight: 600;
+            margin-right: 0.25rem;
+        }
+    </style>
+
+    <main id="main" class="grading-environment">
+        <section id="grading-environment" >
+            <div class="container wow fadeInUp">
+                <div class="section-header">
+                    <h2>GRADING ENVIRONMENT</h2>
+                    <h2>IOI 2025 Grading Environment</h2>
+                </div>
+
+                <div class="grading-content">
+                    <h4>Grading System</h4>
+                    <p class="mb-0">The contest will use CMS (Contest Management System) as the grading system.</p>
+                    <p class="mb-0">Grading is performed on Quipus All-in-One Desktop computers with the following
+                        specs:</p>
+                    <ul class="mb-1">
+                        <li>Intel Core i9-13900H</li>
+                        <li>16 GB DDR4</li>
+                        <li>1 TB NVMe SSD</li>
+                    </ul>
+
+                    <div class="note-box mb-0">
+                        <p class="small mb-0"><strong>Note</strong>Grading servers are identical to contestant
+                            machines, but with Turbo
+                            Boost, Hyper-Threading and CPU scaling disabled, so CMS timings may differ slightly from
+                            local runs.
+                        </p>
+                    </div>
+
+                    <p class="mb-1">Submitted C++ source files are compiled in a Linux environment using GCC 13.3 or
+                        newer – the same compiler version installed on contestant machines.
+                    </p>
+
+                    <div class="note-box mb-3">
+                        <p class="small mb-0"><strong>Note</strong>Recent GCC versions may consume excessive resources
+                            when compiling
+                            code that allocates dynamic data structures (e.g., a <code>vector</code>) with a large
+                            constant size.
+                            This may cause compilation to exceed resource limits and fail.
+                        </p>
+                    </div>
+
+                    <p class="mb-1">The exact commands used for compilation will be shown on the grading system. With
+                        the exception of certain task types, the compilation command will generally be of the following
+                        format:
+                    </p>
+                    <center>
+                        <pre>/usr/bin/g++ -DEVAL -std=gnu++20 -O2 -pipe -static -s -o task grader.cpp task.cpp</pre>
+                    </center>
+                    <div class="note-box">
+                        <p class="small mb-0"><strong>Note</strong>The compilation scripts provided to the contestants
+                            use a
+                            similar
+                            compilation command, except that they do not include <code>-DEVAL</code> and use the
+                            <code>-g</code> flag instead of
+                            <code>-s</code>.
+                        </p>
+                    </div>
+                    <br>
+                    <h4>Protocol Violation</h4>
+                    <p class="mb-0">A contestant may receive a <code>Protocol Violation</code> feedback if their program
+                        does not
+                        follow the correct protocol described in the problem statement. This typically happens in the
+                        following situations:</p>
+                    <ul class="mb-0">
+                        <li>Reading from standard input or printing to standard output</li>
+                        <li>Calling <code>exit()</code></li>
+                    </ul>
+                    <p class="mb-0">However, other violations of the protocol – particularly those involving grader
+                        procedure calls – should generally result in the solution being judged as incorrect. This will
+                        be reported in CMS as follows:</p>
+                    <ul>
+                        <li><code>Output isn’t correct: Invalid argument</code> – a grader procedure was called with
+                            invalid
+                            arguments</li>
+                        <li><code>Output isn’t correct: Too many calls </code>– a grader procedure was called too many
+                            times</li>
+                    </ul>
+
+                    <h4>Output-Only Subtasks</h4>
+                    <p class="mb-0">If a task includes output-only subtasks, a single submission may contain:</p>
+                    <ul>
+                        <li>At most one C++ source file</li>
+                        <li>Any number of output files (including none), with at most one file per output-only subtask
+                        </li>
+                    </ul>
+
+                    <p class="mb-0">Submissions are evaluated according to the following rules:</p>
+                    <ul>
+                        <li>For each programming subtask, the C++ source file (if provided) will be compiled and graded.
+                            If no source file is included, the score for that subtask will be 0.</li>
+                        <li>For each output-only subtask:
+                            <ul>
+                                <li>If an output file specific to that subtask is included in the submission, it will be
+                                    graded.</li>
+                                <li>Otherwise, if a C++ source file is present, the compiled program will be executed,
+                                    and its output will be graded for that subtask. The required subtask-specific
+                                    protocol that the program must follow is described in the task statement.</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <div class="note-box">
+                        <p class="small mb-0"><strong>Note</strong>Program execution is subject to the time and memory
+                            limits given in
+                            the grading system, regardless of the subtask type.</p>
+                    </div>
+                    <br>
+                    <h4>Task Attachments</h4>
+                    <p class="mb-0">There is an attachment package that you can download from the contest system,
+                        containing:</p>
+                    <ul>
+                        <li>Sample graders</li>
+                        <li>Sample implementations</li>
+                        <li>Example test cases</li>
+                        <li>Compile, run, and submit scripts</li>
+                    </ul>
+                    <p class="mb-0">Each task has a subtask with index 0 which is worth 0 points. Unless specified
+                        otherwise in the problem statement, the test cases for this subtask are the same as the sample
+                        test cases included in the task statement and in the downloadable attachment.</p>
+                    <p>When you test your code on your local machine, we recommend you to use the scripts from the
+                        attachment packages. <br>Please note that we use the <code>-std=gnu++20</code> compiler option.
+                    </p>
+
+                    <h4>Sample Graders</h4>
+                    <p class="mb-0">Sample graders provide a basic mechanism for running your solution. However, in many
+                        cases they are simpler than the graders used to judge your solution, e.g., they often simply
+                        print the answer of your solution without verifying its correctness.</p>
+                    <p class="mb-0">When testing a program with the sample grader, your input should match the format
+                        and constraints from the task statement, otherwise, unspecified behavior may occur. Every two
+                        consecutive tokens on a line are separated by a single space, unless another format is
+                        explicitly specified.</p>
+
+                    <p class="mb-0">The sample grader input and output format are described in a symbolic way. Consider
+                        an example:
+                    </p>
+                    <pre>N         M
+A[0]      A[1]    …    A[N-1]
+P[0]      Q[0]
+P[1]      Q[1]
+…
+P[M-1]    Q[M-1]</pre>
+
+                    <p class="mb-0">In this example:</p>
+                    <ol style="margin-left: 0">
+                        <li>The first line contains the values of N and M separated by a single space.</li>
+                        <li>The second line contains N space-separated values, giving the values of A[0], ..., A[N-1].
+                        </li>
+                        <li><strong>Important </strong> This symbolic notation does not mean that there are at least 3
+                            numbers in the line. We can have for example N=1 (there is a single value in the line) or
+                            even N=0 (the line is empty).</li>
+                        <li>The next M lines contain pairs of values arrays P and Q, which are of length M. As above, we
+                            may have M=0 or M=1.</li>
+                    </ol>
+
+                    <p class="mb-0">If a sample grader procedure call violates some of the constraints in the task
+                        statement, the sample grader may print an error message and terminate immediately. Unless
+                        specified otherwise, the error message is one of the following:</p>
+                    <ul>
+                        <li><code>Invalid argument</code> – a grader procedure was called with arguments which violate a
+                            constraint
+                            provided in or following from the task statement</li>
+                        <li><code>Too many calls </code> – a grader procedure was called more times than the limit
+                            provided in the
+                            task statement</li>
+                    </ul>
+
+                    <p>Note that the contestants can inspect the sample grader source code to see what triggers this
+                        error and/or modify the sample grader to print more information.</p>
+
+                    <h4>Alternative Submission Mechanism</h4>
+                    <p>
+                      In addition to submitting solutions through the CMS web interface, contestants may also use the
+                      <code>submit</code> script included in the task’s attachment package.
+                    </p>
+                    <ul>
+                      <li>
+                       For tasks requiring the submission of a single source file, the script should be run with one argument: the name of the source file to submit.
+                      </li>
+                      <li>
+                        For tasks that allow or require the submission of one or more output files, the script should be run with all the files the contestant wants to submit, which may include output files and other allowed files such as source code. Any output files included must follow a specific naming format, which can be found in the CMS web interface. To assist with this, the attachment package includes empty text files with the correct file names.
+                      </li>
+                    </ul>
+
+                    <p>
+                    The script first attempts to submit online using the CMS. The script first attempts to submit the files online via CMS. If the submission is successful, it will appear in the CMS interface along with the corresponding feedback. If it fails for whatever reason (including timeout), the submission is recorded offline on the contestant’s machine.
+                    </p>
+                    <p>
+                    When the contest is over, the scientific committee collects all the locally recorded submissions and imports them into the CMS. These are added one by one in chronological order. If the number of submissions exceeds the allowed limit for a task, online submissions take precedence over offline ones, and earlier offline submissions take precedence over later ones.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+
+    <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/jquery/jquery-migrate.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/superfish/hoverIntent.js"></script>
+    <script src="lib/superfish/superfish.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/venobox/venobox.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

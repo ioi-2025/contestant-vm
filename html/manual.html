@@ -1,67 +1,49 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
-  <title>IOI2025</title>
-  <style type="text/css">
-    /* share-regular - latin */
+  <title>IOI 2025 - Contestant Machine Manual</title>
+  <style>
     @font-face {
       font-family: 'Share';
       font-style: normal;
       font-weight: 400;
       src: url('fonts/share-v11-latin-regular.eot');
-      /* IE9 Compat Modes */
       src: local('Share Regular'), local('Share-Regular'),
         url('fonts/share-v11-latin-regular.eot?#iefix') format('embedded-opentype'),
-        /* IE6-IE8 */
         url('fonts/share-v11-latin-regular.woff2') format('woff2'),
-        /* Super Modern Browsers */
         url('fonts/share-v11-latin-regular.woff') format('woff'),
-        /* Modern Browsers */
         url('fonts/share-v11-latin-regular.ttf') format('truetype'),
-        /* Safari, Android, iOS */
         url('fonts/share-v11-latin-regular.svg#Share') format('svg');
-      /* Legacy iOS */
     }
 
-    /* fira-sans-regular - latin */
     @font-face {
       font-family: 'Fira Sans';
       font-style: normal;
       font-weight: 400;
       src: url('fonts/fira-sans-v10-latin-regular.eot');
-      /* IE9 Compat Modes */
       src: local('Fira Sans Regular'), local('FiraSans-Regular'),
         url('fonts/fira-sans-v10-latin-regular.eot?#iefix') format('embedded-opentype'),
-        /* IE6-IE8 */
         url('fonts/fira-sans-v10-latin-regular.woff2') format('woff2'),
-        /* Super Modern Browsers */
         url('fonts/fira-sans-v10-latin-regular.woff') format('woff'),
-        /* Modern Browsers */
         url('fonts/fira-sans-v10-latin-regular.ttf') format('truetype'),
-        /* Safari, Android, iOS */
         url('fonts/fira-sans-v10-latin-regular.svg#FiraSans') format('svg');
-      /* Legacy iOS */
     }
 
     body {
-      font: normal 100%/1.4 "Fira Sans", sans-serif;
-      -webkit-text-size-adjust: 100%;
+      font-family: "Fira Sans", sans-serif;
+      font-size: 100%;
+      line-height: 1.6;
+      margin: 2rem;
+      color: #333;
     }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    .ll {
-      font-family: 'Share';
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Share', serif;
       font-weight: bold;
-      padding: 0;
       line-height: 1.2;
-      clear: left;
+      margin-top: 2rem;
     }
 
     h3 {
@@ -69,127 +51,88 @@
     }
 
     code {
-      font-size: 16px;
-      background-color: #eee;
+      background-color: #f5f5f5;
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+      font-size: 0.95em;
+    }
+
+    ul, ol {
+      margin-left: 2rem;
+    }
+
+    img {
+      margin: 1rem 0;
+      max-width: 100%;
+      height: auto;
     }
   </style>
 </head>
 
 <body>
+
   <h1>Contestant Machine Manual</h1>
 
   <h2>Local User Account</h2>
-
-  <p>There is only one normal local (Ubuntu) user account in the contestant machine for the
-    contestant to use. The username is <code>ioi</code> with default password
-    <code>ioi</code>.
-  </p>
-
-  <p>To avoid confusion, you should <strong>NOT</strong> change
-    the <code>ioi</code> local user account password in the contestant machine.</p>
+  <p>Each contestant machine has a single local (Ubuntu 24.04) user account: <code>ioi</code>, with the default password <code>ioi</code>.</p>
+  <p><strong>Do not change</strong> the password of the <code>ioi</code> account to avoid confusion.</p>
 
   <h2>Contestant Account</h2>
-
-  <p>At your first login to the contestant machine, and every subsequent login as long
-    as you do not complete this step, you will be prompted to run the <strong>IOI Setup</strong>.
-
-  <p>Enter your contestant account (for now both username and password is <code>ioi</code>), and wait until you see a
-    success message.</p>
-
-  <p>You can also re-run IOI Setup by running <code>ioisetup</code> from the
-    terminal.</p>
+  <p>Upon your first login, and every subsequent login until the process is complete, you will be prompted to run the <strong>IOI Setup</strong>.</p>
+  <p>Use your contestant credentials (currently both username and password are <code>ioi</code>) and wait for a success confirmation.</p>
 
   <h2>Applications</h2>
-
   <p>The sidebar on the left is called the <strong>Launcher</strong>.</p>
-
-  <p>The top icon in the Launcher is the <strong>Firefox</strong> web browser.
-    Firefox has been configured with a default homepage that provides links to CMS
-    (grading system) as well as other locally stored documentation.</p>
-
-  <p>The <strong>Show Applications</strong> icon, located at the bottom of the Launcher,
-    shows all installed applications. You can use the search bar to quickly find an application
-    by name. For example, you can easily find <code>gnome-terminal</code> by starting to type the
-    letters of <code>terminal</code>.</p>
-
+  <p>The top icon launches the <strong>Firefox</strong> web browser, which opens to a homepage containing links to CMS and local documentation.</p>
+  <p>The <strong>Show Applications</strong> icon at the bottom of the Launcher displays all installed applications. Use the search bar to find apps by name, e.g., typing <code>terminal</code> will locate <code>gnome-terminal</code>.</p>
 
   <h2>Advanced Features</h2>
 
-  <h3>Home Directory Backup (not available yet)</h3>
-
-  <p>The contestant machine provides a backup/replication mechanism that uses rsync to
-    replicate the home directory to IOI 2025
-    backup server. This is not enabled by default. Contestants can
-    either:</p>
-
+  <h3>Home Directory Backup (not yet available)</h3>
+  <p>The system supports replication of the home directory using <code>rsync</code> to the IOI 2025 backup server. This feature is disabled by default.</p>
   <ul>
-    <li>Run the <code>ioibackup</code> script at any time to perform the rsync.</li>
-    <li>Run <code>ioiconf setautobackup on</code> to enable automatic backup at a
-      5-minute interval. A random delay up to 30 seconds in inserted before automatic
-      backup.</li>
-    <li>Run <code>ioiconf setautobackup off</code> to disable automatic backup.</li>
+    <li>Use <code>ioibackup</code> to trigger a manual sync.</li>
+    <li>Enable automatic backup every 5 minutes using <code>ioiconf setautobackup on</code>.</li>
+    <li>Disable it with <code>ioiconf setautobackup off</code>.</li>
   </ul>
-
-  <p>Backups are available only during contest and practice time.</p>
-
-  <p>This backup is more accurately described as replication. It uses <code>rsync</code> with the <code>--delete</code>
-    option, which means the remote contents are a mirror of the local home directory. In
-    particular, files deleted locally will also be removed at the remote. This replication only
-    includes non-hidden files up to a maximum size of 100 KB.</p>
-
-  <p>To restore or retrieve files from remote, run <code>ioibackup -r</code>. The files will
-    be restored in <code>/tmp/restore</code>.</p>
+  <p>Backups are only available during contest and practice sessions.</p>
+  <p>Note: This is a replication (not archival) system. It uses <code>rsync --delete</code>, which mirrors local deletions on the remote server. Only non-hidden files under 100KB are synced.</p>
+  <p>To recover files, use <code>ioibackup -r</code>. Files will be restored in <code>/tmp/restore</code>.</p>
 
   <h3>Automatic Screen Lock</h3>
-
-  <p>Automatic screen lock is enabled by default, with a 30 second delay after 15 minutes of
-    idle time. You can disable automatic screen lock by running
-    <code>ioiconf setscreenlock off</code>. Run <code>ioiconf setscreenlock on</code> to
-    re-enable automatic screen lock.
-  </p>
-
-  <h3>Timezone</h3>
-
-  <p>The contestant machine is configured to show time in the <strong>Europe/Budapest</strong> timezone.
-    All dates and times communicated by the IOI 2025 organizers will be in
-    Europe/Budapest timezone unless otherwise specified.</p>
-
-  <p>If you strongly prefer to see the time in your local timezone, you can run
-    <code>ioiconf settz &lt;timezone&gt;</code>, where
-    <code>&lt;timezone&gt;</code> is an appropriate TZ specification (according to
-    <code>tzselect</code>). The changes will be effected the next time you login to
-    the <code>ioi</code> account.
-  </p>
-
-  <p>E.g.: <code>ioiconf settz UTC</code> to use GMT time.</p>
-
-  <h3>Import VSCode extensions from local machine</h3>
-
-  C/C++ extension is installed by default for every contestant. But some extensions are unconvenient to install for all
-  contestants. However, we have made available the following extensions:
-
+  <p>The screen locks after 15 minutes of inactivity, with a 30-second warning. To disable this:</p>
   <ul>
-    <li>VSCode VIM</li>
-    <li>IntelliJ Idea Keybindings</li>
-    <li>clangd, alternative to C/C++ extension (we have deemed the extension somewhat unstable. Thus, code completion,
-      diagnostics or code actions might stop working. Known workarounds are combinations of restarting VSCode,
-      restarting clangd LSP from VSCode, deleting ~/.cache/clangd or disabling the extension in favor of C/C++)</li>
+    <li><code>ioiconf setscreenlock off</code> — disable</li>
+    <li><code>ioiconf setscreenlock on</code> — re-enable</li>
   </ul>
 
-  Installation can be done in the following way:
+  <h3>Timezone</h3>
+  <p>The system clock is set to the <strong>America/La_Paz</strong> timezone. All official times from the IOI 2025 organizers use this timezone unless stated otherwise.</p>
+  <p>If you prefer another timezone, use <code>ioiconf settz &lt;timezone&gt;</code>. Example:</p>
+  <p><code>ioiconf settz UTC</code></p>
+  <p>This takes effect at your next login.</p>
 
+  <h3>Importing VSCode Extensions</h3>
+  <p>The C/C++ extension is preinstalled. The following additional extensions are available for manual installation:</p>
+  <ul>
+    <li>VSCode VIM</li>
+    <li>IntelliJ IDEA Keybindings</li>
+    <li>clangd (as an alternative to the C/C++ extension; known to be occasionally unstable)</li>
+  </ul>
+
+  <p>To install:</p>
   <ol>
-    <li>Start VSCode</li>
-    <li>Select Extensions icon from the left sidebar</li>
-    <li>In the top-right side of the tab, select the "..." menu</li>
+    <li>Open VSCode</li>
+    <li>Click the Extensions icon on the left sidebar</li>
+    <li>Click the "..." menu in the top-right corner</li>
     <li>Select "Install from VSIX..."</li>
-    <li>Open the "extra-vsc-exts" bookmark and select the extension you want to install</li>
-    <li>The extension will be installed and enabled automatically</li>
+    <li>Navigate to the <code>extra-vsc-exts</code> bookmark</li>
+    <li>Select the desired extension</li>
   </ol>
 
   <div>
-    <img src="manual-import-vsix-1.png">
-    <img src="manual-import-vsix-2.png">
+    <img src="manual-import-vsix-1.png" alt="VSIX Import Step 1">
+    <img src="manual-import-vsix-2.png" alt="VSIX Import Step 2">
   </div>
 
 </body>
