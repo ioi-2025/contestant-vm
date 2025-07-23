@@ -1,115 +1,117 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
-  <title>IOI2025</title>
-  <style type="text/css">
-    /* share-regular - latin */
+  <title>IOI 2025</title>
+
+  <!-- Font: Share -->
+  <style>
     @font-face {
       font-family: 'Share';
       font-style: normal;
       font-weight: 400;
-      src: url('fonts/share-v11-latin-regular.eot');
-      /* IE9 Compat Modes */
       src: local('Share Regular'), local('Share-Regular'),
         url('fonts/share-v11-latin-regular.eot?#iefix') format('embedded-opentype'),
-        /* IE6-IE8 */
         url('fonts/share-v11-latin-regular.woff2') format('woff2'),
-        /* Super Modern Browsers */
         url('fonts/share-v11-latin-regular.woff') format('woff'),
-        /* Modern Browsers */
         url('fonts/share-v11-latin-regular.ttf') format('truetype'),
-        /* Safari, Android, iOS */
         url('fonts/share-v11-latin-regular.svg#Share') format('svg');
-      /* Legacy iOS */
     }
 
-    /* fira-sans-regular - latin */
+    /* Font: Fira Sans */
     @font-face {
       font-family: 'Fira Sans';
       font-style: normal;
       font-weight: 400;
-      src: url('fonts/fira-sans-v10-latin-regular.eot');
-      /* IE9 Compat Modes */
       src: local('Fira Sans Regular'), local('FiraSans-Regular'),
         url('fonts/fira-sans-v10-latin-regular.eot?#iefix') format('embedded-opentype'),
-        /* IE6-IE8 */
         url('fonts/fira-sans-v10-latin-regular.woff2') format('woff2'),
-        /* Super Modern Browsers */
         url('fonts/fira-sans-v10-latin-regular.woff') format('woff'),
-        /* Modern Browsers */
         url('fonts/fira-sans-v10-latin-regular.ttf') format('truetype'),
-        /* Safari, Android, iOS */
         url('fonts/fira-sans-v10-latin-regular.svg#FiraSans') format('svg');
-      /* Legacy iOS */
     }
 
     body {
-      font: normal 100%/1.4 "Fira Sans", sans-serif;
+      font-family: 'Fira Sans', sans-serif;
+      font-size: 100%;
+      line-height: 1.4;
       -webkit-text-size-adjust: 100%;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    .ll {
-      font-family: 'Share';
-      font-weight: bold;
+      margin: 0;
       padding: 0;
+    }
+
+    h1 {
+      display: none;
+    }
+
+    .title,
+    .link {
+      font-family: 'Share', sans-serif;
+      font-weight: bold;
+      text-align: center;
+      font-size: 140%;
       line-height: 1.2;
-      clear: left;
+      margin: 1em 0;
     }
 
-    .ml {
-      font-size: 140%;
-      text-align: center;
+    .button {
+      display: inline-block;
+      padding: 0.5em 1em;
+      background-color: #EEEEEE;
+      border: 1px solid #333333;
+      border-left-color: #CCCCCC;
+      border-top-color: #CCCCCC;
+      text-decoration: none;
+      font-weight: bold;
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
     }
 
-    .ll {
-      font-size: 140%;
+    .logo {
       text-align: center;
+      margin-top: 1em;
+    }
+
+    .logo img {
+      max-height: 150px;
     }
 
     .container {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
+      gap: 1em;
+      padding: 2em;
     }
 
-    .container>div {
-      margin: 1em 2em;
-    }
-
-    .button {
-      text-decoration: none;
-      background-color: #EEEEEE;
-      padding: 0.5em 0;
-      border-top: 1px solid #CCCCCC;
-      border-right: 1px solid #333333;
-      border-bottom: 1px solid #333333;
-      border-left: 1px solid #CCCCCC;
+    .container .link {
       width: 100%;
-      display: block;
+      max-width: 300px;
     }
   </style>
 </head>
 
 <body>
-  <h1 style="display: none;">IOI2025</h1>
-  <div style="text-align: center;">
-    <img src="ioi-website-logo.png" alt="IOI 2025" style="max-height: 150px;" />
+  <h1>IOI 2025</h1>
+
+  <div class="logo">
+    <img src="ioi-website-logo.png" alt="IOI 2025 Logo">
   </div>
-  <div class="ll" style="margin: 1em 0;">
-    <a class="button" href="https://cms.ioi2025.bo/">CMS WEBSITE</a>
+
+  <div class="title">
+    <a class="button" href="https://cms.ioi2025.bo/">CMS Website</a>
   </div>
-  <div class="container">
-    <div class="ll"><a href="../cppreference/reference/en/index.html">C/C++ Reference</a></div>
-    <div class="ll"><a href="manual.html">Contestant Machine Manual</a></div>
-    <div class="ll"><a href="../python3.12-doc/html/index.html">Python documentation</a></div>
-  </div>
+
+  <main class="container">
+    <div class="link"><a href="manual.html">Contestant Machine Manual</a></div>
+    <div class="link"><a href="./ioi2025-offline/contest-rules.html">Contest Rules</a></div>
+    <div class="link"><a href="./ioi2025-offline/grading-environment.html">Grading Environment</a></div>
+
+    <div class="link"><a href="../cppreference/reference/en/index.html">C/C++ Reference</a></div>
+    <div class="link"><a href="../python3.12-doc/html/index.html">Python Documentation</a></div>
+  </main>
 </body>
 
 </html>
